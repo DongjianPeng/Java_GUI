@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 
 class Cavans extends JPanel {
 
@@ -37,10 +39,18 @@ class Cavans extends JPanel {
         GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
         final String[] allFonts = graphicsEnvironment.getAvailableFontFamilyNames();
         for (String font : allFonts) {
-            System.out.println(font);
+            //System.out.println(font);
         }
 
-        Image image = new ImageIcon("/th.jpg").getImage();
+        Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
+
+
+        System.out.println(this.getClass().getResource("/").getPath());
+        ImageIcon imageIcon = new ImageIcon("th.jpg");
+        System.out.println(imageIcon.getIconHeight());
+
+        Image image = defaultToolkit.getImage("C:\\Code\\eclipse_oxygen\\Java_GUI\\src\\main\\resources\\th.jpg");
+
         g.drawImage(image, 50, 50, null);
     }
 }
