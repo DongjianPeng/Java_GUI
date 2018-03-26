@@ -49,6 +49,8 @@ public class WindowGenerate {
         EventQueue.invokeLater(() -> {
             if (layoutManager != null) {
                 j.setLayout(layoutManager);
+            }else {
+                j.setLayout(new FlowLayout());
             }
             j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             j.setTitle(title);
