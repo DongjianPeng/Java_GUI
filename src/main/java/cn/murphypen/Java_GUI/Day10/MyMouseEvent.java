@@ -6,8 +6,6 @@ import com.google.common.collect.Lists;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -37,7 +35,7 @@ class MyPannel extends JPanel {
             }
         }
     };
-    private MouseInputAdapter mouseInputAdapter = new MouseInputAdapter() {
+    class MyMouseInputAdapter extends MouseInputAdapter {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e) {
             if (1 == e.getClickCount()) {
@@ -70,19 +68,18 @@ class MyPannel extends JPanel {
         return false;
     }
 
-    @Override
-    protected void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
-        Graphics2D g = (Graphics2D) graphics;
-        if (rectangle2DList != null) {
-            System.out.println(rectangle2DList.size());
-            rectangle2DList.forEach(r -> g.draw(r));
-        }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+
+        // draw all squares
+        for (Rectangle2D r : rectangle2DList)
+            g2.draw(r);
     }
 
     public MyPannel(Dimension size) {
         this.size = size;
-        addMouseListener(mouseInputAdapter);
+        addMouseListener(new MyMouseInputAdapter());
         addMouseMotionListener(mouseMotionAdapter);
     }
 
