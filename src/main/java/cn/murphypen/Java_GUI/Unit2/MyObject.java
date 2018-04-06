@@ -5,6 +5,7 @@
 package cn.murphypen.Java_GUI.Unit2;
 
 import javax.swing.*;
+import java.util.StringTokenizer;
 
 class MyFrame extends JFrame{
 
@@ -34,6 +35,13 @@ public class MyObject {
     public static void main(String[] args) {
         MyObject my = new MyObject();
         my.print();
+
+        StringTokenizer s = new StringTokenizer("absd rrbgw","b");
+        System.out.println(s.countTokens());
+        while(s.hasMoreTokens()){
+            System.out.println(s.nextToken());
+        }
+
     }
     public  void print(){
         Obj2 o = new Obj2();
